@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+   
+    <div id="wrapper"></div>
+    <script id="library-template" type="text/x-handlebars-template">
+        <div id="library">
+        {{{name}}}
+        <h2>{{number}}</h2>
+            <p>Tags:
+            <ul>
+                {{#tags}}
+                <li class="tags-name">{{name}}</li>
+                {{/tags}}
+            </ul>
+             </p>
+            <p>
+                {{#if author}}
+                <h2>{{author}}</h2>
+                {{/if}}
+                <p>Redactor:{{#with redactor}}
+            {{name}} {{age}}
+            {{/with}}
+            </p>
+            {{#myredactor redactor}}
+            {{/myredactor}}
+               
+            
+    </div>
+    </script>
+
+    <script src="scripts/handlebars.min.js"></script>
+    <script>
+        Handlebars.registerHelper('myredactor', function (redactor) {
+            var html = '<ul>' +
+                '<li>' + redactor.name + '</li>' +
+                '<li>' + redactor.age + '</li>' +
+                '</ul>';
+            return new Handlebars.SafeString(html);
+        })
+            var html = document.getElementById('library-template').innerHTML;
+            var template = Handlebars.compile(html);
+            var data = {
+                name: '<h1>Ivan Petkov</h1>',
+                number: 123,
+                // author:'Anelia Gagova',
+                tags: [{ name: 'Ani' }, { name: 'lusi' }, { name: 'viki' }],
+                redactor: {
+                    name: 'ivan',
+                    age:25
+                }
+            };
+            var postResult = template(data);
+            document.getElementById('wrapper').innerHTML=postResult;
+    </script>
+</body>
+</html>

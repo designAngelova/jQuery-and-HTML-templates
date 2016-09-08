@@ -1,0 +1,95 @@
+﻿<!--Task 3
+
+Create a jQuery plugin for ListView
+
+Apply a template for each item of a collection
+Using the data-template attribute set the ID of the template to use for the items
+Must work with different collections and templates
+
+Example:
+
+Having the HTML:
+
+<ul id="books-list" data-template="book-item-template"></ul>
+<script id="book-item-template" type="…">
+    <li class="book-item">
+        <a href="/#books/{{id}}">
+            <strong>{{title}}</strong>
+        </a>
+    </li>
+</script>
+And executing:
+
+ $('#books-list').listview(books);
+Should generate:
+
+<ul id="books-list" data-template="book-item-template">
+    <li class="book-item">
+        <a href="/#books/1">
+            <strong>JavaScript: The Good Parts</strong>
+        </a>
+    </li>
+    <li class="book-item">
+        <a href="/#books/2">
+            <strong>Secrets of the JavaScript Ninja</strong>
+        </a>
+    </li>
+    <li class="book-item">
+        <a href="/#books/3">
+            <strong>Core HTML5 Canvas</strong>
+        </a>
+    </li>
+    <li class="book-item">
+        <a href="/#books/4">
+            <strong>JavaScript Patterns</strong>
+        </a>
+    </li>
+</ul>-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script src="jquery-3.1.0.js"></script>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script src="../scripts/handlebars.min.js"></script>
+   
+
+    <label for="id">Enter a id</label><input type="text" id="id" />
+    <label for="title">Enter a title</label><input type="text" id="title" />
+    <button onclick="listview()">Click me</button>
+
+    <ul id="books-list" data-template="book-item-template"></ul>
+    <script id="book-item-template" type="…">
+        <li class="book-item">
+            <a href="/#books/{{id}}">
+                <strong>{{title}}</strong>
+            </a>
+        </li>
+    </script>
+    <script>
+       
+        function listview() {
+            var html = document.getElementById('book-item-template').innerHTML;
+            var template = Handlebars.compile(html);
+            var id = $('#id').val();
+            var title = $('#title').val();
+            var books = {
+                id: id,
+                title: title
+            };
+            
+            var postResult = template(books);
+            document.getElementById('books-list').innerHTML = postResult;
+            
+            return books;
+        }
+
+
+
+       
+
+    </script>
+</body>
+</html>

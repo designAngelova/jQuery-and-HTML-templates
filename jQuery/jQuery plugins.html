@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="jQuery/jquery-3.1.0.js"></script>
+    <script src="jQuery/jquery-3.1.0.min.js"></script>
+    <script src="scripts/jQuery%20pugin%20task1.js"></script>
+    <script src="jQuery/fadeInScroll.jQuery.js"></script>
+</head>
+<body>
+    <select id="the-select">
+        <option value="value-1">Option 1</option>
+        <option value="value-2">Option 2</option>
+        <option value="value-3">Option 3</option>
+        <option value="value-4">Option 4</option>
+        <option value="value-5">Option 5</option>
+    </select>
+    <button onclick="makeMenu()" >Click me</button>
+    <script>
+
+       
+    </script>
+    <script>
+        function makeMenu() {
+            var select = $('#the-select').css('display', 'none'),
+            body = $('body'),
+            div = $('<div />').addClass('dropdown-list').text('DropDown Menu'),
+            selectors = $(select).children(),
+            len = selectors.length;
+           
+            select.appendTo(div);
+            div.appendTo(body);
+            var allValues = new Array();
+            $(select).each(function () {
+                allValues.push(this.value);
+            });
+            var menu = $('<div />').addClass('menu-item');
+                
+            for (var i = 1; i < len; i++) {
+                $('<div/>', {
+                    'class': 'dropdown-item',
+                    'data-value': $(selectors).eq(i).val(),
+                    'data-index': i,
+                    text: $(selectors).eq(i).text()
+                })
+		
+                data.appendTo(menu);
+            }
+            menu.appendTo(div);
+        }
+        
+    </script>
+</body>
+</html>

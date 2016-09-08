@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="button">Click me</button>
+    
+    <script>
+        
+        var tripleclickEvent = new CustomEvent('tripleclick');
+        var button = document.getElementById('button');
+        counter = 0;
+        button.addEventListener('click', function () {
+            counter++;
+            if (counter == 3) {
+                button.dispatchEvent(tripleclickEvent);
+                counter = 0;
+            }
+        });
+        button.addEventListener('tripleclick', function () {
+            alert("button have been pressed 3 times");
+        }, false)
+       
+    </script>
+</body>
+</html>
